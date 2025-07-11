@@ -21,7 +21,8 @@
 			"!**/.nuxt",
 			"!bts.jsonc",
 			"!**/drizzle.config.ts",
-			"!**/src/lib/context.ts"
+			"!**/src/lib/context.ts",
+			"!**/.wrangler/**"
 		]
 	},
 	"formatter": {
