@@ -24,8 +24,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "YOUR_DB_NAME",
-      "database_id": "YOUR_DB_ID",
+      "database_name": "kakosuke-db",
+      "database_id": "1779a24d-64b9-4efa-8de0-9c61d0adf7bf",
       "preview_database_id": "local-test-db",
       "migrations_dir": "./src/db/migrations"
     }
