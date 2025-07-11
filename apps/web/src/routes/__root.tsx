@@ -22,10 +22,8 @@ export interface RouterAppContext {
 export const Route = createRootRouteWithContext<RouterAppContext>()({
 	component: RootComponent,
 	head: () => ({
+		title: "My App",
 		meta: [
-			{
-				title: "My App",
-			},
 			{
 				name: "description",
 				content: "My App is a web application",
