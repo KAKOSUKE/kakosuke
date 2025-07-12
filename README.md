@@ -1,72 +1,71 @@
 # kakosuke
 
-This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines React, TanStack Router, Hono, TRPC, and more.
+このプロジェクトは、React、TanStack Router、Hono、tRPC などを組み合わせたモダンな TypeScript スタックである [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack) を使用して作成されました。
 
-## Features
+## 特徴
 
-- **TypeScript** - For type safety and improved developer experience
-- **TanStack Router** - File-based routing with full type safety
-- **TailwindCSS** - Utility-first CSS for rapid UI development
-- **shadcn/ui** - Reusable UI components
-- **Hono** - Lightweight, performant server framework
-- **tRPC** - End-to-end type-safe APIs
-- **workers** - Runtime environment
-- **Drizzle** - TypeScript-first ORM
-- **SQLite/Turso** - Database engine
-- **Turborepo** - Optimized monorepo build system
-- **Biome** - Linting and formatting
-- **Husky** - Git hooks for code quality
+-   **TypeScript** - 型安全性による開発体験の向上
+-   **TanStack Router** - 完全な型安全性を備えたファイルベースルーティング
+-   **TailwindCSS** - UI 開発を迅速に行うためのユーティリティファーストな CSS フレームワーク
+-   **shadcn/ui** - 再利用可能な UI コンポーネント
+-   **Hono** - 軽量で高性能なサーバーフレームワーク
+-   **tRPC** - エンドツーエンドの型安全な API
+-   **Cloudflare Workers** - サーバーレス実行環境
+-   **Drizzle** - TypeScript ファーストな ORM
+-   **SQLite/Turso** - データベースエンジン
+-   **Turborepo** - 最適化されたモノレポビルドシステム
+-   **Biome** - Linting とフォーマット
+-   **Husky** - コード品質を保証するための Git フック
 
-## Getting Started
+## はじめに
 
-First, install the dependencies:
+まず、依存関係をインストールします。
 
 ```bash
 bun install
 ```
-## Database Setup
 
-This project uses SQLite with Drizzle ORM.
+## データベースのセットアップ
 
-1. Start the local SQLite database:
-Local development for a Cloudflare D1 database will already be running as part of the `wrangler dev` command.
+このプロジェクトでは、Drizzle ORM と SQLite を使用しています。
 
-2. Update your `.env` file in the `apps/server` directory with the appropriate connection details if needed.
+1.  ローカルの SQLite データベースを起動します。
+    Cloudflare D1 データベースのローカル開発は、`wrangler dev` コマンドの一部として既に実行されます。
 
-3. Apply the schema to your database:
+2.  必要に応じて、`apps/server` ディレクトリ内の `.env` ファイルを適切な接続情報で更新します。
+
+3.  スキーマをデータベースに適用します。
+
 ```bash
 bun db:push
 ```
 
-
-Then, run the development server:
+次に、開発サーバーを起動します。
 
 ```bash
 bun dev
 ```
 
-Open [http://localhost:3001](http://localhost:3001) in your browser to see the web application.
-The API is running at [http://localhost:3000](http://localhost:3000).
+ブラウザで [http://localhost:3001](http://localhost:3001) を開くと、ウェブアプリケーションが表示されます。
+API は [http://localhost:3000](http://localhost:3000) で実行されています。
 
-
-
-## Project Structure
+## プロジェクト構造
 
 ```
 kakosuke/
 ├── apps/
-│   ├── web/         # Frontend application (React + TanStack Router)
-│   └── server/      # Backend API (Hono, TRPC)
+│   ├── web/         # フロントエンドアプリケーション (React + TanStack Router)
+│   └── server/      # バックエンド API (Hono, tRPC)
 ```
 
-## Available Scripts
+## 利用可能なスクリプト
 
-- `bun dev`: Start all applications in development mode
-- `bun build`: Build all applications
-- `bun dev:web`: Start only the web application
-- `bun dev:server`: Start only the server
-- `bun check-types`: Check TypeScript types across all apps
-- `bun db:push`: Push schema changes to database
-- `bun db:studio`: Open database studio UI
-- `cd apps/server && bun db:local`: Start the local SQLite database
-- `bun check`: Run Biome formatting and linting
+-   `bun dev`: すべてのアプリケーションを開発モードで起動します
+-   `bun build`: すべてのアプリケーションをビルドします
+-   `bun dev:web`: ウェブアプリケーションのみを起動します
+-   `bun dev:server`: サーバーのみを起動します
+-   `bun check-types`: すべてのアプリで TypeScript の型チェックを実行します
+-   `bun db:push`: スキーマの変更をデータベースにプッシュします
+-   `bun db:studio`: データベーススタジオ UI を開きます
+-   `cd apps/server && bun db:local`: ローカルの SQLite データベースを起動します
+-   `bun check`: Biome によるフォーマットと Lint を実行します
