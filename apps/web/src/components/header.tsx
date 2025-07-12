@@ -10,6 +10,9 @@ export default function Header() {
 
 	return (
 		<div>
+			<Link to="/" className="font-bold text-2xl">
+				<h1>KAKOSUKE</h1>
+			</Link>
 			<div className="flex flex-row items-center justify-between px-2 py-1">
 				<nav className="flex gap-4 text-lg">
 					{links.map(({ to, label }) => {
