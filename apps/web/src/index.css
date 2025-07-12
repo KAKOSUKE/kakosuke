@@ -163,3 +163,7 @@ body {
 	margin-bottom: 0.5em;
 	line-height: 1.6;
 }
+
+.prose pre {
+	overflow-x: auto;
+}

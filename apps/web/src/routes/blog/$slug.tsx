@@ -106,7 +106,7 @@ function BlogPost() {
 	}
 
 	return (
-		<div className="prose dark:prose-invert container mx-auto max-w-3xl px-4 py-2">
+		<div className="prose dark:prose-invert container mx-auto w-[90vw] max-w-3xl px-4 py-2">
 			<ReactMarkdown
 				remarkPlugins={[remarkGfm]}
 				components={{
