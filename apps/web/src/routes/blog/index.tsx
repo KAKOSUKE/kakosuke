@@ -9,6 +9,17 @@ interface BlogPost {
 
 export const Route = createFileRoute("/blog/")({
 	component: BlogIndex,
+	head: () => ({
+		meta: [
+			{
+				name: "description",
+				content: "Explore our latest blog posts.",
+			},
+			{
+				title: "Blog",
+			},
+		],
+	}),
 });
 
 function BlogIndex() {

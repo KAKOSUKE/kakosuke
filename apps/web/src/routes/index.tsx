@@ -4,6 +4,17 @@ import { trpc } from "@/utils/trpc";
 
 export const Route = createFileRoute("/")({
 	component: HomeComponent,
+	head: () => ({
+		meta: [
+			{
+				name: "description",
+				content: "My App is a web application",
+			},
+			{
+				title: "My App",
+			},
+		],
+	}),
 });
 
 const TITLE_TEXT = `

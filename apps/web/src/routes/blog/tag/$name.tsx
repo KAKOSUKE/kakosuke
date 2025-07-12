@@ -10,11 +10,41 @@ interface BlogPost {
 
 export const Route = createFileRoute("/blog/tag/$name")({
 	component: RouteComponent,
+	loader: async ({ params }) => {
+		const { name } = params;
+
+		try {
+			const tagsResponse = await fetch("/tags.json");
+			const tags = await tagsResponse.json();
+			const tagName = tags.find((t: { slug: string }) => t.slug === name);
+			if (!tagName) {
+				throw new Error(`Tag not found for name: ${name}`);
+			}
+
+			return {
+				name: tagName.title as string,
+			};
+		} catch (error) {
+			console.error("Error fetching tag:", error);
+			throw new Error("Failed to load blog posts by tag.");
+		}
+	},
+	head: ({ loaderData }) => ({
+		meta: [
+			{
+				name: "description",
+				content: `Explore blog posts tagged with "${loaderData?.name}".`,
+			},
+			{
+				title: `Posts tagged with "${loaderData?.name}"`,
+			},
+		],
+	}),
 });
 
 function RouteComponent() {
 	const [posts, setPosts] = useState<BlogPost[]>([]);
-	const [tagTitle, setTagTitle] = useState<string | null>(null);
+	const tagTitle = Route.useLoaderData()?.name;
 	const tag = Route.useParams().name;
 
 	useEffect(() => {
@@ -25,19 +55,11 @@ function RouteComponent() {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const data: BlogPost[] = await response.json();
-				// Filter posts by tag if provided
 				const filteredPosts = tag
 					? data.filter((post) => post.tags?.includes(tag))
 					: data;
 
 				setPosts(filteredPosts);
-
-				const tagsResponse = await fetch("/tags.json");
-				const tags = await tagsResponse.json();
-				const tagTitle = tags.find(
-					(t: { slug: string }) => t.slug === tag,
-				)?.title;
-				setTagTitle(tagTitle || null);
 			} catch (error) {
 				console.error("Failed to fetch blog posts:", error);
 			}

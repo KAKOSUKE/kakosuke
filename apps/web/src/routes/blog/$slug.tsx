@@ -47,11 +47,13 @@ export const Route = createFileRoute("/blog/$slug")({
 	},
 	component: BlogPost,
 	head: ({ loaderData }) => ({
-		title: loaderData?.title || "Blog Post",
 		meta: [
 			{
 				name: "description",
 				content: loaderData?.description || "A blog post",
+			},
+			{
+				title: loaderData?.title || "Blog Post",
 			},
 		],
 	}),
