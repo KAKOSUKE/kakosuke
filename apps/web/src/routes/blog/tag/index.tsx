@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import TagCloud from "@/components/tag-cloud";
 
 export const Route = createFileRoute("/blog/tag/")({
 	component: RouteComponent,
@@ -16,5 +17,10 @@ export const Route = createFileRoute("/blog/tag/")({
 });
 
 function RouteComponent() {
-	return <div>Hello "/blog/tag/"!</div>;
+	return (
+		<div className="container mx-auto max-w-3xl px-4 py-2">
+			<h2 className="mb-6 font-bold text-3xl">Blog Tags</h2>
+			<TagCloud />
+		</div>
+	);
 }

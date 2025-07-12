@@ -1,11 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import BlogPostCard from "@/components/blog-post-card";
 
 interface BlogPost {
 	slug: string;
 	title: string;
 	tags?: string[];
 	description?: string;
+}
+
+interface Tag {
+	slug: string;
+	name: string;
 }
 
 export const Route = createFileRoute("/blog/tag/$name")({
@@ -15,14 +21,14 @@ export const Route = createFileRoute("/blog/tag/$name")({
 
 		try {
 			const tagsResponse = await fetch("/tags.json");
-			const tags = await tagsResponse.json();
-			const tagName = tags.find((t: { slug: string }) => t.slug === name);
+			const tags = (await tagsResponse.json()) as Tag[];
+			const tagName = tags.find((t) => t.slug === name);
 			if (!tagName) {
 				throw new Error(`Tag not found for name: ${name}`);
 			}
 
 			return {
-				name: tagName.title as string,
+				name: tagName.name as string,
 			};
 		} catch (error) {
 			console.error("Error fetching tag:", error);
@@ -69,22 +75,17 @@ function RouteComponent() {
 
 	return (
 		<div className="container mx-auto max-w-3xl px-4 py-2">
-			<h1 className="mb-6 font-bold text-3xl">
+			<h2 className="mb-6 font-bold text-3xl">
 				{tagTitle ? `Posts tagged with "${tagTitle}"` : "Blog Posts"}
-			</h1>
+			</h2>
 			<ul className="space-y-4">
 				{posts.map((post) => (
 					<li key={post.slug} className="rounded-lg border p-4">
-						<Link
-							to="/blog/$slug"
-							params={{ slug: post.slug }}
-							className="font-semibold text-blue-600 text-xl "
-						>
-							<div className="font-semibold text-lg">{post.title}</div>
-							<div className="mt-2 text-gray-600 text-sm">
-								{post.description}
-							</div>
-						</Link>
+						<BlogPostCard
+							slug={post.slug}
+							title={post.title}
+							description={post.description || "No description available."}
+						/>
 					</li>
 				))}
 			</ul>

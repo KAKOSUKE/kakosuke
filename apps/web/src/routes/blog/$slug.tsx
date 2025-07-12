@@ -5,6 +5,18 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkGfm from "remark-gfm";
 
+interface Tag {
+	slug: string;
+	name: string;
+}
+
+interface BlogPost {
+	slug: string;
+	title: string;
+	description?: string;
+	tags?: string[];
+}
+
 export const Route = createFileRoute("/blog/$slug")({
 	loader: async ({ params }) => {
 		const { slug } = params;
@@ -12,8 +24,8 @@ export const Route = createFileRoute("/blog/$slug")({
 		try {
 			// public/posts.json
 			const response = await fetch("/posts.json");
-			const posts = await response.json();
-			const post = posts.find((p: { slug: string }) => p.slug === slug);
+			const posts = (await response.json()) as BlogPost[];
+			const post = posts.find((p) => p.slug === slug);
 
 			if (!post) {
 				throw new Error(`Post not found for slug: ${slug}`);
@@ -21,24 +33,19 @@ export const Route = createFileRoute("/blog/$slug")({
 
 			// /tags.json
 			const tagsResponse = await fetch("/tags.json");
-			const tags = await tagsResponse.json();
-			const postTags = post.tags
-				? post.tags
-						.map((tag: string) => {
-							const foundTag = tags.find(
-								(t: { slug: string }) => t.slug === tag,
-							);
-							return foundTag
-								? { slug: foundTag.slug, title: foundTag.title }
-								: null;
-						})
-						.filter(Boolean)
-				: [];
+			const tags = (await tagsResponse.json()) as Tag[];
+			const postTags = post.tags?.map((tagSlug) =>
+				tags.find((tag) => tag.slug === tagSlug),
+			);
+
+			if (!postTags) {
+				throw new Error(`Tags not found for post: ${slug}`);
+			}
 
 			return {
 				title: post.title as string,
 				description: post.description as string,
-				tags: postTags,
+				tags: postTags as { slug: string; name: string }[],
 			};
 		} catch (error) {
 			console.error("Error fetching post:", error);
@@ -61,7 +68,7 @@ export const Route = createFileRoute("/blog/$slug")({
 
 function BlogPost() {
 	const { slug } = Route.useParams();
-	const tags = Route.useLoaderData()?.tags || [];
+	const tags = Route.useLoaderData().tags;
 	const [markdown, setMarkdown] = useState("");
 	const [error, setError] = useState<string | null>(null);
 
@@ -132,14 +139,14 @@ function BlogPost() {
 				<div className="mt-4">
 					<ul className="flex flex-wrap gap-2">
 						{" "}
-						{tags.map((tag: { slug: string; title: string }) => (
+						{tags.map((tag) => (
 							<li key={tag.slug}>
 								<Link
 									to={"/blog/tag/$name"}
 									params={{ name: tag.slug }}
 									className="inline-block rounded-full bg-blue-100 px-3 py-1 font-medium text-blue-800 text-sm transition-colors duration-200 hover:bg-blue-200 dark:bg-blue-800 dark:text-blue-100 dark:hover:bg-blue-700"
 								>
-									{tag.title}
+									{tag.name}
 								</Link>
 							</li>
 						))}

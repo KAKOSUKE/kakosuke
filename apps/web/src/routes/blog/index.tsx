@@ -1,10 +1,12 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import BlogPostCard from "@/components/blog-post-card";
+import TagCloud from "@/components/tag-cloud";
 
 interface BlogPost {
 	slug: string;
 	title: string;
-	description?: string;
+	description: string;
 }
 
 export const Route = createFileRoute("/blog/")({
@@ -43,23 +45,19 @@ function BlogIndex() {
 
 	return (
 		<div className="container mx-auto max-w-3xl px-4 py-2">
-			<h1 className="mb-6 font-bold text-3xl">Blog Posts</h1>
+			<h2 className="mb-6 font-bold text-3xl">Blog Posts</h2>
 			<ul className="space-y-4">
 				{posts.map((post) => (
 					<li key={post.slug} className="rounded-lg border p-4">
-						<Link
-							to="/blog/$slug"
-							params={{ slug: post.slug }}
-							className="font-semibold text-blue-600 text-xl "
-						>
-							<div className="font-semibold text-lg">{post.title}</div>
-							<div className="mt-2 text-gray-600 text-sm">
-								{post.description}
-							</div>
-						</Link>
+						<BlogPostCard
+							slug={post.slug}
+							title={post.title}
+							description={post.description}
+						/>
 					</li>
 				))}
 			</ul>
+			<TagCloud />
 		</div>
 	);
 }
