@@ -28,7 +28,10 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 				content: "My App is a web application",
 			},
 			{
-				title: "My App",
+				title: "KAKOSUKE",
+			},
+			{
+				lang: "ja",
 			},
 		],
 		links: [

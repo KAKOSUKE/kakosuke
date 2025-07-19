@@ -55,6 +55,24 @@ function HomeComponent() {
 						</span>
 					</div>
 				</section>
+				<section>
+					<h2 className="mb-2 font-medium">Production</h2>
+					<div className="grid grid-cols-2 gap-4">
+						<div className="rounded-lg border p-4">
+							<a
+								href="https://chart-maker.kosuke0505.com/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<h3>Chart Maker（チャートメーカー）</h3>
+								<p className="text-muted-foreground text-sm">
+									Chart Maker は、Mermaid.js
+									を使用して、簡単にチャートを作成できるアプリケーションです。
+								</p>
+							</a>
+						</div>
+					</div>
+				</section>
 			</div>
 		</div>
 	);
