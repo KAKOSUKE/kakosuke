@@ -30,9 +30,6 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 			{
 				title: "KAKOSUKE",
 			},
-			{
-				lang: "ja",
-			},
 		],
 		links: [
 			{
