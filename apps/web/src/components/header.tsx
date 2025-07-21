@@ -7,6 +7,7 @@ export default function Header() {
 		{ to: "/", label: "Home" },
 		{ to: "/blog", label: "Blog" },
 		{ to: "/tools", label: "Tools" },
+		{ to: "/about", label: "About" },
 	];
 
 	return (

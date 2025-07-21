@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ToolsIndexRouteImport } from './routes/tools/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
@@ -18,6 +19,11 @@ import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as BlogTagIndexRouteImport } from './routes/blog/tag/index'
 import { Route as BlogTagNameRouteImport } from './routes/blog/tag/$name'
 
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -61,6 +67,7 @@ const BlogTagNameRoute = BlogTagNameRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/tools/chart-maker': typeof ToolsChartMakerRoute
   '/tools/simple-qrcode': typeof ToolsSimpleQrcodeRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/tools/chart-maker': typeof ToolsChartMakerRoute
   '/tools/simple-qrcode': typeof ToolsSimpleQrcodeRoute
@@ -82,6 +90,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/tools/chart-maker': typeof ToolsChartMakerRoute
   '/tools/simple-qrcode': typeof ToolsSimpleQrcodeRoute
@@ -94,6 +103,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/blog/$slug'
     | '/tools/chart-maker'
     | '/tools/simple-qrcode'
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/blog/$slug'
     | '/tools/chart-maker'
     | '/tools/simple-qrcode'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/blog/$slug'
     | '/tools/chart-maker'
     | '/tools/simple-qrcode'
@@ -125,6 +137,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   BlogSlugRoute: typeof BlogSlugRoute
   ToolsChartMakerRoute: typeof ToolsChartMakerRoute
   ToolsSimpleQrcodeRoute: typeof ToolsSimpleQrcodeRoute
@@ -136,6 +149,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -197,6 +217,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   BlogSlugRoute: BlogSlugRoute,
   ToolsChartMakerRoute: ToolsChartMakerRoute,
   ToolsSimpleQrcodeRoute: ToolsSimpleQrcodeRoute,
