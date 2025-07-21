@@ -5,13 +5,11 @@ export default function BlogPostCard({
 	title,
 	description,
 	date,
-	tags,
 }: {
 	slug: string;
 	title: string;
 	description: string;
 	date: string;
-	tags: string[];
 }) {
 	return (
 		<Link

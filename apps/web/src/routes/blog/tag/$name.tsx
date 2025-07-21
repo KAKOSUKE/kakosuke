@@ -88,8 +88,7 @@ function RouteComponent() {
 							slug={post.slug}
 							title={post.title}
 							description={post.description || "No description available."}
-							date={new Date().toLocaleDateString()} // Placeholder for date
-							tags={post.tags || []}
+							date={post.date}
 						/>
 					</li>
 				))}
