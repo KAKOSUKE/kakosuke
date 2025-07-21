@@ -1,18 +1,18 @@
-## 多機能なT3 Stack環境を構築する `create-better-t-stack`
+## 多機能なT3 Stack環境を構築する `Better-T Stack`
 
 ### 概要
 
 `create-t3-app`は、T3 Stack（Next.js, TypeScript, tRPC, Prisma, NextAuth.js, Tailwind CSS）の環境を迅速に構築するための標準的なCLIツールです。しかし、開発プロジェクトの要件によっては、より多くの技術選択肢や、モバイル・デスクトップ対応、モノレポ構成など、より高度な設定が初期段階で求められる場合があります。
 
-本稿では、標準のT3 Stackを拡張し、より柔軟で多機能なプロジェクトの雛形を生成するCLIツール `create-better-t-stack`について解説します。
+本稿では、標準のT3 Stackを拡張し、より柔軟で多機能なプロジェクトの雛形を生成するCLIツール `Better-T Stack`について解説します。
 
-### `create-better-t-stack`とは
+### `Better-T Stack`とは
 
-`create-better-t-stack`は、TypeScriptによるエンドツーエンドの型安全性を確保したプロジェクトの雛形を生成するためのCLIツールです。対話形式のウィザードを通じて、開発者はプロジェクトの要件に合わせて使用する技術を細かく選択できます。
+`Better-T Stack`は、TypeScriptによるエンドツーエンドの型安全性を確保したプロジェクトの雛形を生成するためのCLIツールです。対話形式のウィザードを通じて、開発者はプロジェクトの要件に合わせて使用する技術を細かく選択できます。
 
 `create-t3-app`が提供するT3 Stackをベースとしながらも、バックエンドフレームワークの選択、マルチプラットフォーム対応、ORMの選択肢追加など、多くの点で機能が拡張されています。
 
-### `create-better-t-stack`の主な機能
+### `Better-T Stack`の主な機能
 
 このツールが提供する主な機能は以下の通りです。
 
@@ -63,9 +63,9 @@ Webアプリケーションに加え、モバイルおよびデスクトップ�
 
 `Better-Auth`という認証機能が組み込まれており、初期設定の段階で認証システムを導入できます。
 
-### `create-better-t-stack`の使用方法
+### `Better-T Stack`の使用方法
 
-`create-better-t-stack`は`npx`を介して直接実行できます。
+`Better-T Stack`は`npx`を介して直接実行できます。
 
 ```bash
 npx create-better-t-stack@latest
@@ -75,7 +75,7 @@ npx create-better-t-stack@latest
 
 ### まとめ
 
-`create-better-t-stack`は、標準の`create-t3-app`を拡張し、より多くの技術選択肢とマルチプラットフォーム対応、モノレポ構成などを提供する高機能なプロジェクトスカフォールディングツールです。
+`Better-T Stack`は、標準の`create-t3-app`を拡張し、より多くの技術選択肢とマルチプラットフォーム対応、モノレポ構成などを提供する高機能なプロジェクトスカフォールディングツールです。
 
 特定のORMやデータベースを使用したい場合や、初期段階からWeb以外のプラットフォームへの展開を計画している場合に、有力な選択肢となります。プロジェクトの要件に応じて、標準ツールとの使い分けを検討すると良いでしょう。
 
