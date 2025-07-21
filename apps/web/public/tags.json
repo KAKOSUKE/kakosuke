@@ -8,5 +8,15 @@
 		"slug": "blog",
 		"name": "ブログ",
 		"description": "私のブログでは、私の考えやアイデア、プロジェクトについての投稿を共有します。"
+	},
+	{
+		"slug": "better-t-stack",
+		"name": "better-t-stack",
+		"description": "T3 Stack開発の効率化を目指すCLIツール。雛形作成を自動化し、開発体験を向上させます。"
+	},
+	{
+		"slug": "typescript",
+		"name": "TypeScript",
+		"description": "JavaScriptに型安全性を追加するプログラミング言語。"
 	}
 ]

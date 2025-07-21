@@ -3,6 +3,14 @@
 		"slug": "first-post",
 		"title": "一番目のブログ投稿",
 		"description": "これは私の最初のブログ投稿です。ここでは、私のウェブサイトやブログについての情報を共有します。",
+		"date": "2025-07-07",
 		"tags": ["website", "blog"]
+	},
+	{
+		"slug": "better-t-stack",
+		"title": "多機能なT3 Stack環境を構築する `create-better-t-stack`",
+		"description": "CLIツール`create-better-t-stack`について、その機能と使用方法を解説します。",
+		"date": "2025-07-21",
+		"tags": ["better-t-stack", "typescript"]
 	}
 ]
