@@ -139,18 +139,53 @@ body {
 	margin-top: 1.5em;
 	margin-bottom: 0.8em;
 	font-size: 2.5em; /* 適切なサイズに調整 */
+	font-weight: bold;
 }
 
 .prose h2 {
 	margin-top: 1.2em;
 	margin-bottom: 0.7em;
 	font-size: 2em;
+	font-weight: bold;
+	border-bottom: 1px solid var(--color-border); /* 下線を追加 */
 }
 
 .prose h3 {
 	margin-top: 1em;
 	margin-bottom: 0.6em;
 	font-size: 1.5em;
+	font-weight: bold;
+	border-bottom: 1px solid var(--color-border); /* 下線を追加 */
+}
+
+.prose h4 {
+	margin-top: 0.8em;
+	margin-bottom: 0.5em;
+	font-size: 1.2em;
+	font-weight: bold;
+	border-bottom: 1px solid var(--color-border); /* 下線を追加 */
+}
+
+.prose th {
+	background-color: var(--color-secondary);
+	color: var(--color-secondary-foreground);
+	padding: 0.5em;
+	border-bottom: 2px solid var(--color-border);
+}
+
+.prose td {
+	padding: 0.5em;
+	border-bottom: 1px solid var(--color-border);
+}
+
+/* preではない要素の子であるcodeにのみスタイルを適用 */
+.prose *:not(.code_in_pre) > code {
+	background-color: var(--color-input);
+	color: var(--color-foreground);
+	padding: 0.2em 0.4em;
+	border-radius: var(--radius-sm);
+	font-family: "Fira Code", monospace; /* 適切なフォントに変更 */
+	white-space: nowrap;
 }
 
 /* 箇条書きのスタイル調整 */
@@ -166,4 +201,14 @@ body {
 
 .prose pre {
 	overflow-x: auto;
+}
+
+.prose a {
+	color: var(--color-primary);
+	text-decoration: underline;
+}
+
+.prose p {
+	margin-bottom: 1em; /* 段落の下余白 */
+	line-height: 1.6; /* 行の高さ */
 }

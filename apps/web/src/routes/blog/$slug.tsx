@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 
 interface Tag {
@@ -14,6 +15,7 @@ interface BlogPost {
 	slug: string;
 	title: string;
 	description?: string;
+	date: string;
 	tags?: string[];
 }
 
@@ -45,6 +47,7 @@ export const Route = createFileRoute("/blog/$slug")({
 			return {
 				title: post.title as string,
 				description: post.description as string,
+				date: post.date as string,
 				tags: postTags as { slug: string; name: string }[],
 			};
 		} catch (error) {
@@ -69,6 +72,7 @@ export const Route = createFileRoute("/blog/$slug")({
 function BlogPost() {
 	const { slug } = Route.useParams();
 	const tags = Route.useLoaderData().tags;
+	const date = Route.useLoaderData().date;
 	const [markdown, setMarkdown] = useState("");
 	const [error, setError] = useState<string | null>(null);
 
@@ -106,32 +110,55 @@ function BlogPost() {
 	}
 
 	return (
-		<div className="prose dark:prose-invert container mx-auto w-[90vw] max-w-3xl px-4 py-2">
-			<ReactMarkdown
-				remarkPlugins={[remarkGfm]}
-				components={{
-					code: function CodeComponent({
-						inline,
-						className,
-						children,
-					}: React.ComponentProps<"code"> & { inline?: boolean }) {
-						const match = /language-(\w+)/.exec(className || "");
-						return !inline && match ? (
-							<SyntaxHighlighter
-								style={dracula}
-								language={match[1]}
-								PreTag="div"
-							>
-								{String(children).replace(/\n$/, "")}
-							</SyntaxHighlighter>
-						) : (
-							<code className={className}>{children}</code>
-						);
-					},
-				}}
-			>
-				{markdown}
-			</ReactMarkdown>
+		<div className="container mx-auto w-[90vw] max-w-3xl px-4 py-2">
+			<div className="prose dark:prose-invert">
+				<time dateTime={date} className="float-end text-gray-500 text-sm">
+					{new Date(date).toLocaleDateString("ja-JP", {
+						year: "numeric",
+						month: "long",
+						day: "numeric",
+					})}
+				</time>
+				<ReactMarkdown
+					remarkPlugins={[remarkGfm]}
+					rehypePlugins={[rehypeRaw]}
+					components={{
+						code: function CodeComponent({
+							inline,
+							className,
+							children,
+						}: React.ComponentProps<"code"> & { inline?: boolean }) {
+							const match = /language-(\w+)/.exec(className || "");
+							return !inline && match ? (
+								<SyntaxHighlighter
+									style={a11yDark}
+									language={match[1]}
+									PreTag="div"
+									className="code_in_pre"
+								>
+									{String(children).replace(/\n$/, "")}
+								</SyntaxHighlighter>
+							) : (
+								<code className={className}>{children}</code>
+							);
+						},
+						a: ({ href, children }) => {
+							const isExternal = href && !href.startsWith("/");
+							return (
+								<a
+									href={href}
+									target={isExternal ? "_blank" : undefined}
+									rel={isExternal ? "noopener noreferrer" : undefined}
+								>
+									{children}
+								</a>
+							);
+						},
+					}}
+				>
+					{markdown}
+				</ReactMarkdown>
+			</div>
 
 			<hr className="my-6" />
 

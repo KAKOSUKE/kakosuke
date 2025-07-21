@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import BlogPostCard from "@/components/blog-post-card";
+import { sortByDate } from "@/utils/blog-utils";
 
 interface BlogPost {
 	slug: string;
 	title: string;
-	tags?: string[];
 	description?: string;
+	date: string;
+	tags?: string[];
 }
 
 interface Tag {
@@ -64,8 +66,9 @@ function RouteComponent() {
 				const filteredPosts = tag
 					? data.filter((post) => post.tags?.includes(tag))
 					: data;
+				const sortedPosts = sortByDate(filteredPosts);
 
-				setPosts(filteredPosts);
+				setPosts(sortedPosts);
 			} catch (error) {
 				console.error("Failed to fetch blog posts:", error);
 			}
@@ -85,6 +88,8 @@ function RouteComponent() {
 							slug={post.slug}
 							title={post.title}
 							description={post.description || "No description available."}
+							date={new Date().toLocaleDateString()} // Placeholder for date
+							tags={post.tags || []}
 						/>
 					</li>
 				))}

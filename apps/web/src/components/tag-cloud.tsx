@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import TagParts from "./tag-parts";
 
 interface Tag {
 	slug: string;
@@ -39,12 +40,8 @@ export default function TagCloud() {
 			<ul className="flex flex-wrap gap-2">
 				{tags.map((tag) => (
 					<li key={tag.slug}>
-						<Link
-							to={"/blog/tag/$name"}
-							params={{ name: tag.slug }}
-							className="inline-block rounded-full bg-blue-100 px-3 py-1 font-medium text-blue-800 text-sm transition-colors duration-200 hover:bg-blue-200 dark:bg-blue-800 dark:text-blue-100 dark:hover:bg-blue-700"
-						>
-							{tag.name}
+						<Link to={"/blog/tag/$name"} params={{ name: tag.slug }}>
+							<TagParts name={tag.name} />
 						</Link>
 					</li>
 				))}

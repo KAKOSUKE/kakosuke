@@ -2,11 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import BlogPostCard from "@/components/blog-post-card";
 import TagCloud from "@/components/tag-cloud";
+import { sortByDate } from "@/utils/blog-utils";
 
 interface BlogPost {
 	slug: string;
 	title: string;
-	description: string;
+	description?: string;
+	date: string;
+	tags?: string[];
 }
 
 export const Route = createFileRoute("/blog/")({
@@ -35,7 +38,8 @@ function BlogIndex() {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const data: BlogPost[] = await response.json();
-				setPosts(data);
+				const sortedPosts = sortByDate(data);
+				setPosts(sortedPosts);
 			} catch (error) {
 				console.error("Failed to fetch blog posts:", error);
 			}
@@ -52,7 +56,9 @@ function BlogIndex() {
 						<BlogPostCard
 							slug={post.slug}
 							title={post.title}
-							description={post.description}
+							description={post.description ?? ""}
+							date={post.date}
+							tags={post.tags ?? []}
 						/>
 					</li>
 				))}
