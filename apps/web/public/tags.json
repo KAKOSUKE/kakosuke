@@ -18,5 +18,10 @@
 		"slug": "typescript",
 		"name": "TypeScript",
 		"description": "JavaScriptに型安全性を追加するプログラミング言語。"
+	},
+	{
+		"slug": "react-markdown",
+		"name": "react-markdown",
+		"description": "ReactコンポーネントとしてMarkdownをレンダリングするライブラリ。"
 	}
 ]

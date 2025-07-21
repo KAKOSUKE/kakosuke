@@ -8,9 +8,16 @@
 	},
 	{
 		"slug": "better-t-stack",
-		"title": "多機能なT3 Stack環境を構築する `Better-T Stack`",
-		"description": "CLIツール`Better-T Stack`について、その機能と使用方法を解説します。",
+		"title": "多機能なT3 Stack環境を構築する Better-T Stack",
+		"description": "CLIツール Better-T Stack について、その機能と使用方法を解説します。",
 		"date": "2025-07-21",
 		"tags": ["better-t-stack", "typescript"]
+	},
+	{
+		"slug": "rehype-raw",
+		"title": "react-markdown のテーブル内で改行する：rehype-raw 活用法",
+		"description": "react-markdownを使用してテーブル内で改行を実現する方法について解説します。",
+		"date": "2025-07-21",
+		"tags": ["typescript", "react-markdown"]
 	}
 ]

@@ -1,4 +1,4 @@
-## 多機能なT3 Stack環境を構築する `Better-T Stack`
+## 多機能なT3 Stack環境を構築する Better-T Stack
 
 ### 概要
 
