@@ -50,7 +50,7 @@ function RootComponent() {
 			<HeadContent />
 			<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
 				{/* 画面に収める */}
-				<div className="container mx-auto grid h-svh max-w-3xl grid-rows-[auto_1fr] px-4">
+				<div className="container mx-auto grid h-svh max-w-7xl grid-rows-[auto_1fr] px-4">
 					<Header />
 					{isFetching ? <Loader /> : <Outlet />}
 				</div>

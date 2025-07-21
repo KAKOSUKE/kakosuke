@@ -10,7 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ToolsIndexRouteImport } from './routes/tools/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as ToolsSimpleQrcodeRouteImport } from './routes/tools/simple-qrcode'
+import { Route as ToolsChartMakerRouteImport } from './routes/tools/chart-maker'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as BlogTagIndexRouteImport } from './routes/blog/tag/index'
 import { Route as BlogTagNameRouteImport } from './routes/blog/tag/$name'
@@ -20,9 +23,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsIndexRoute = ToolsIndexRouteImport.update({
+  id: '/tools/',
+  path: '/tools/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsSimpleQrcodeRoute = ToolsSimpleQrcodeRouteImport.update({
+  id: '/tools/simple-qrcode',
+  path: '/tools/simple-qrcode',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsChartMakerRoute = ToolsChartMakerRouteImport.update({
+  id: '/tools/chart-maker',
+  path: '/tools/chart-maker',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
@@ -44,14 +62,20 @@ const BlogTagNameRoute = BlogTagNameRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/tools/chart-maker': typeof ToolsChartMakerRoute
+  '/tools/simple-qrcode': typeof ToolsSimpleQrcodeRoute
   '/blog': typeof BlogIndexRoute
+  '/tools': typeof ToolsIndexRoute
   '/blog/tag/$name': typeof BlogTagNameRoute
   '/blog/tag': typeof BlogTagIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/tools/chart-maker': typeof ToolsChartMakerRoute
+  '/tools/simple-qrcode': typeof ToolsSimpleQrcodeRoute
   '/blog': typeof BlogIndexRoute
+  '/tools': typeof ToolsIndexRoute
   '/blog/tag/$name': typeof BlogTagNameRoute
   '/blog/tag': typeof BlogTagIndexRoute
 }
@@ -59,20 +83,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/tools/chart-maker': typeof ToolsChartMakerRoute
+  '/tools/simple-qrcode': typeof ToolsSimpleQrcodeRoute
   '/blog/': typeof BlogIndexRoute
+  '/tools/': typeof ToolsIndexRoute
   '/blog/tag/$name': typeof BlogTagNameRoute
   '/blog/tag/': typeof BlogTagIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog/$slug' | '/blog' | '/blog/tag/$name' | '/blog/tag'
+  fullPaths:
+    | '/'
+    | '/blog/$slug'
+    | '/tools/chart-maker'
+    | '/tools/simple-qrcode'
+    | '/blog'
+    | '/tools'
+    | '/blog/tag/$name'
+    | '/blog/tag'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog/$slug' | '/blog' | '/blog/tag/$name' | '/blog/tag'
+  to:
+    | '/'
+    | '/blog/$slug'
+    | '/tools/chart-maker'
+    | '/tools/simple-qrcode'
+    | '/blog'
+    | '/tools'
+    | '/blog/tag/$name'
+    | '/blog/tag'
   id:
     | '__root__'
     | '/'
     | '/blog/$slug'
+    | '/tools/chart-maker'
+    | '/tools/simple-qrcode'
     | '/blog/'
+    | '/tools/'
     | '/blog/tag/$name'
     | '/blog/tag/'
   fileRoutesById: FileRoutesById
@@ -80,7 +126,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  ToolsChartMakerRoute: typeof ToolsChartMakerRoute
+  ToolsSimpleQrcodeRoute: typeof ToolsSimpleQrcodeRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  ToolsIndexRoute: typeof ToolsIndexRoute
   BlogTagNameRoute: typeof BlogTagNameRoute
   BlogTagIndexRoute: typeof BlogTagIndexRoute
 }
@@ -94,11 +143,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/': {
+      id: '/tools/'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof ToolsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/simple-qrcode': {
+      id: '/tools/simple-qrcode'
+      path: '/tools/simple-qrcode'
+      fullPath: '/tools/simple-qrcode'
+      preLoaderRoute: typeof ToolsSimpleQrcodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/chart-maker': {
+      id: '/tools/chart-maker'
+      path: '/tools/chart-maker'
+      fullPath: '/tools/chart-maker'
+      preLoaderRoute: typeof ToolsChartMakerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
@@ -128,7 +198,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogSlugRoute: BlogSlugRoute,
+  ToolsChartMakerRoute: ToolsChartMakerRoute,
+  ToolsSimpleQrcodeRoute: ToolsSimpleQrcodeRoute,
   BlogIndexRoute: BlogIndexRoute,
+  ToolsIndexRoute: ToolsIndexRoute,
   BlogTagNameRoute: BlogTagNameRoute,
   BlogTagIndexRoute: BlogTagIndexRoute,
 }
