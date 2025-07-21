@@ -7,7 +7,6 @@
 -   **TypeScript** - 型安全性による開発体験の向上
 -   **TanStack Router** - 完全な型安全性を備えたファイルベースルーティング
 -   **TailwindCSS** - UI 開発を迅速に行うためのユーティリティファーストな CSS フレームワーク
--   **shadcn/ui** - 再利用可能な UI コンポーネント
 -   **Hono** - 軽量で高性能なサーバーフレームワーク
 -   **tRPC** - エンドツーエンドの型安全な API
 -   **Cloudflare Workers** - サーバーレス実行環境
