@@ -216,7 +216,7 @@ export default function ChartMaker() {
 	};
 
 	return (
-		<div className="flex h-[90vh] min-h-[480px] flex-col overflow-hidden rounded-lg border">
+		<div className="flex h-[90vh] min-h-[480px] flex-col overflow-x-hidden rounded-lg border">
 			<PanelGroup
 				direction={isDesktop ? "horizontal" : "vertical"}
 				className="flex h-full"

@@ -7,7 +7,7 @@ export const Route = createFileRoute("/tools/chart-maker")({
 
 function RouteComponent() {
 	return (
-		<div className="container mx-auto overflow-x-hidden px-4 py-2">
+		<div className="container mx-auto h-screen overflow-hidden px-4 py-2">
 			<h2 className="mb-6 font-bold text-3xl">Chart Maker</h2>
 			<ChartMaker />
 		</div>
