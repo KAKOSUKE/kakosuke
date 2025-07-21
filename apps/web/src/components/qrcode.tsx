@@ -96,7 +96,7 @@ const QRCodeGenerator: React.FC = () => {
 						type="text"
 						value={text}
 						onChange={(e) => setText(e.target.value)}
-						className="w-full rounded-lg border border-gray-300 p-2.5 transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+						className="w-full rounded-lg border border-gray-300 p-2.5 text-gray-500 transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
 					/>
 				</div>
 
@@ -115,7 +115,7 @@ const QRCodeGenerator: React.FC = () => {
 							max="512"
 							value={size}
 							onChange={(e) => setSize(Number(e.target.value))}
-							className="w-24 rounded-lg border border-gray-300 p-2 text-center transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+							className="w-24 rounded-lg border border-gray-300 p-2 text-center text-gray-500 transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
 						/>
 					</div>
 					<input
