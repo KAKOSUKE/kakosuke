@@ -44,7 +44,7 @@ function HomeComponent() {
 						{TOOLS.map((tool) => (
 							// biome-ignore lint/style/useTemplate: <explanation>
 							<Link key={tool.slug} to={"/tools/" + `${tool.slug}`}>
-								<div className="rounded-lg border p-4">
+								<div className="flex h-full flex-col rounded-lg border p-4">
 									<h3 className="font-semibold">{tool.name}</h3>
 									<p className="text-muted-foreground text-sm">
 										{tool.description}
