@@ -108,59 +108,65 @@ const MermaidDiagram = forwardRef<MermaidDiagramHandle, MermaidDiagramProps>(
 		}));
 
 		useEffect(() => {
-			if (!containerRef.current) return;
-			if (code.trim() === "") {
-				containerRef.current.innerHTML = "";
-				return;
-			}
-
-			const initConfig: MermaidConfig = {
-				theme: theme,
-				themeVariables: {
-					...themeVariables,
-					fontSize: `${fontSize}px`,
-					lineHeight: 1.4,
-				},
-			};
-			const fullCode = `%%{init: ${JSON.stringify(initConfig)}}%%\n${code}`;
-
-			try {
-				const svgId = `mermaid-svg-${Date.now()}`;
-				mermaid
-					.render(svgId, fullCode)
-					.then(({ svg }) => {
-						if (containerRef.current) {
-							containerRef.current.innerHTML = "";
-							const parser = new DOMParser();
-
-							const sanitizedSvg = svg.replace(/<br>/g, "<br/>");
-							const svgDoc = parser.parseFromString(
-								sanitizedSvg,
-								"image/svg+xml",
-							);
-
-							if (svgDoc.firstChild) {
-								const parseError = svgDoc.getElementsByTagName("parsererror");
-								if (parseError.length > 0) {
-									containerRef.current.innerText =
-										"SVGの描画中にエラーが発生しました。";
-									console.error("SVG Parse Error:", parseError[0].textContent);
-								} else {
-									containerRef.current.appendChild(svgDoc.firstChild);
-								}
-							}
-						}
-					})
-					.catch(() => {
-						if (containerRef.current) {
-							containerRef.current.innerHTML = `<div class="text-red-500 font-bold">エラー：構文が正しくありません。</div>`;
-						}
-					});
-			} catch (_error) {
-				if (containerRef.current) {
-					containerRef.current.innerHTML = `<div class="text-red-500 font-bold">エラーが発生しました。</div>`;
+			const renderDiagram = async () => {
+				if (!containerRef.current) return;
+				if (code.trim() === "") {
+					containerRef.current.innerHTML = "";
+					return;
 				}
-			}
+
+				const initConfig: MermaidConfig = {
+					theme: theme,
+					themeVariables: {
+						...themeVariables,
+						fontSize: `${fontSize}px`,
+						lineHeight: "1.4", // 前回の修正を反映
+					},
+				};
+				const fullCode = `%%{init: ${JSON.stringify(initConfig)}}%%\n${code}`;
+
+				try {
+					// 1. 描画の前に構文を検証
+					await mermaid.parse(fullCode);
+
+					// 2. 検証が成功したら、図を描画
+					const svgId = `mermaid-svg-${Date.now()}`;
+					const { svg } = await mermaid.render(svgId, fullCode);
+
+					// 正常なSVGをコンテナにセット
+					if (containerRef.current) {
+						containerRef.current.innerHTML = "";
+						const parser = new DOMParser();
+						const sanitizedSvg = svg.replace(/<br>/g, "<br/>");
+						const svgDoc = parser.parseFromString(
+							sanitizedSvg,
+							"image/svg+xml",
+						);
+
+						if (
+							svgDoc.firstChild &&
+							svgDoc.getElementsByTagName("parsererror").length === 0
+						) {
+							containerRef.current.appendChild(svgDoc.firstChild);
+						} else {
+							containerRef.current.innerHTML = `<div class="p-4 text-red-500 font-bold">SVGのパースに失敗しました。</div>`;
+							console.error(
+								"SVG Parse Error:",
+								svgDoc.getElementsByTagName("parsererror")[0]?.textContent,
+							);
+						}
+					}
+				} catch (error) {
+					// 3. 構文エラーをキャッチしたら、カスタムエラーメッセージを表示
+					if (containerRef.current) {
+						containerRef.current.innerHTML = `<div class="p-4 text-red-500 font-bold">エラー：構文が正しくありません。</div>`;
+					}
+					// 開発者向けにコンソールにはエラー情報を残す
+					console.error("Mermaid Parse Error:", error);
+				}
+			};
+
+			renderDiagram();
 		}, [code, fontSize, theme, themeVariables]);
 
 		return <div ref={containerRef} />;
