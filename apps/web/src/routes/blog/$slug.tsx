@@ -143,13 +143,15 @@ function BlogPost() {
 		<>
 			<div className="container mx-auto w-[90vw] max-w-3xl px-4 py-2">
 				<div className="prose dark:prose-invert">
-					<time dateTime={date} className="float-end text-gray-500 text-sm">
-						{new Date(date).toLocaleDateString("ja-JP", {
-							year: "numeric",
-							month: "long",
-							day: "numeric",
-						})}
-					</time>
+					<p className="text-right">
+						<time dateTime={date} className="text-gray-500 text-sm">
+							{new Date(date).toLocaleDateString("ja-JP", {
+								year: "numeric",
+								month: "long",
+								day: "numeric",
+							})}
+						</time>
+					</p>
 					<ReactMarkdown
 						remarkPlugins={[remarkGfm]}
 						rehypePlugins={[rehypeRaw]}
