@@ -212,3 +212,21 @@ body {
 	margin-bottom: 1em; /* 段落の下余白 */
 	line-height: 1.6; /* 行の高さ */
 }
+
+.clickable-image {
+	cursor: pointer;
+	border: 1px solid #ddd; /* 薄いグレーの枠線 */
+	border-radius: 4px; /* 少し角を丸める */
+	padding: 5px; /* 画像と枠線の間に余白を作る */
+	transition: box-shadow 0.2s ease-in-out;
+}
+
+/* マウスホバーで少し影をつけてクリックできることを強調 */
+.clickable-image:hover {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ダークモード用のスタイル */
+.dark .clickable-image {
+	border-color: #4a4a4a;
+}
