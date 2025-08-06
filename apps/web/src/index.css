@@ -184,14 +184,13 @@ body {
 	color: var(--color-foreground);
 	padding: 0.2em 0.4em;
 	border-radius: var(--radius-sm);
-	font-family: "Fira Code", monospace; /* 適切なフォントに変更 */
-	white-space: nowrap;
+	font-family: "Fira Code", monospace;
+	white-space: normal;
 }
 
-/* 箇条書きのスタイル調整 */
 .prose ul li {
-	margin-bottom: 0.5em; /* 各項目の下余白 */
-	line-height: 1.6; /* 行の高さ */
+	margin-bottom: 0.5em;
+	line-height: 1.6;
 }
 
 .prose ol li {
@@ -209,24 +208,22 @@ body {
 }
 
 .prose p {
-	margin-bottom: 1em; /* 段落の下余白 */
-	line-height: 1.6; /* 行の高さ */
+	margin-bottom: 1em;
+	line-height: 1.6;
 }
 
 .clickable-image {
 	cursor: pointer;
-	border: 1px solid #ddd; /* 薄いグレーの枠線 */
-	border-radius: 4px; /* 少し角を丸める */
-	padding: 5px; /* 画像と枠線の間に余白を作る */
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 5px;
 	transition: box-shadow 0.2s ease-in-out;
 }
 
-/* マウスホバーで少し影をつけてクリックできることを強調 */
 .clickable-image:hover {
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* ダークモード用のスタイル */
 .dark .clickable-image {
 	border-color: #4a4a4a;
 }
