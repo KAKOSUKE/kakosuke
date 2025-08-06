@@ -23,5 +23,15 @@
 		"slug": "react-markdown",
 		"name": "react-markdown",
 		"description": "ReactコンポーネントとしてMarkdownをレンダリングするライブラリ。"
+	},
+	{
+		"slug": "cloudflare",
+		"name": "Cloudflare",
+		"description": "Cloudflareに関する情報。"
+	},
+	{
+		"slug": "adsense",
+		"name": "AdSense",
+		"description": "Googleの広告配信サービスに関する情報。"
 	}
 ]
