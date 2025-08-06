@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
+import Adsense from "@/components/adsense";
 
 interface Tag {
 	slug: string;
@@ -75,6 +76,11 @@ function BlogPost() {
 	const date = Route.useLoaderData().date;
 	const [markdown, setMarkdown] = useState("");
 	const [error, setError] = useState<string | null>(null);
+	const h3Counter = useRef(0); // h3の出現回数をカウントするref
+
+	useEffect(() => {
+		h3Counter.current = 0;
+	}, []);
 
 	useEffect(() => {
 		async function fetchMarkdown() {
@@ -123,6 +129,23 @@ function BlogPost() {
 					remarkPlugins={[remarkGfm]}
 					rehypePlugins={[rehypeRaw]}
 					components={{
+						h3: (props) => {
+							const { ...rest } = props;
+							const shouldShowAd = h3Counter.current % 2 !== 0;
+							h3Counter.current += 1;
+							return (
+								<Fragment>
+									{shouldShowAd && (
+										<Adsense
+											client={import.meta.env.VITE_ADSENSE_CLIENT}
+											slot={import.meta.env.VITE_ADSENSE_SLOT}
+											className="my-6"
+										/>
+									)}
+									<h3 {...rest} />
+								</Fragment>
+							);
+						},
 						code: function CodeComponent({
 							inline,
 							className,
