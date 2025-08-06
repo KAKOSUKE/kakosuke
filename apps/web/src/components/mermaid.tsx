@@ -120,20 +120,17 @@ const MermaidDiagram = forwardRef<MermaidDiagramHandle, MermaidDiagramProps>(
 					themeVariables: {
 						...themeVariables,
 						fontSize: `${fontSize}px`,
-						lineHeight: "1.4", // 前回の修正を反映
+						lineHeight: "1.4",
 					},
 				};
 				const fullCode = `%%{init: ${JSON.stringify(initConfig)}}%%\n${code}`;
 
 				try {
-					// 1. 描画の前に構文を検証
 					await mermaid.parse(fullCode);
 
-					// 2. 検証が成功したら、図を描画
 					const svgId = `mermaid-svg-${Date.now()}`;
 					const { svg } = await mermaid.render(svgId, fullCode);
 
-					// 正常なSVGをコンテナにセット
 					if (containerRef.current) {
 						containerRef.current.innerHTML = "";
 						const parser = new DOMParser();
@@ -157,11 +154,9 @@ const MermaidDiagram = forwardRef<MermaidDiagramHandle, MermaidDiagramProps>(
 						}
 					}
 				} catch (error) {
-					// 3. 構文エラーをキャッチしたら、カスタムエラーメッセージを表示
 					if (containerRef.current) {
 						containerRef.current.innerHTML = `<div class="p-4 text-red-500 font-bold">エラー：構文が正しくありません。</div>`;
 					}
-					// 開発者向けにコンソールにはエラー情報を残す
 					console.error("Mermaid Parse Error:", error);
 				}
 			};
