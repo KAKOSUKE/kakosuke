@@ -7,12 +7,16 @@ declare global {
 }
 
 interface AdsenseProps {
+	client: string;
+	slot: string;
 	format?: "auto" | "fluid" | "rectangle" | "vertical";
 	responsive?: boolean;
 	className?: string;
 }
 
 const Adsense = ({
+	client,
+	slot,
 	format = "auto",
 	responsive = true,
 	className = "",
@@ -41,7 +45,8 @@ const Adsense = ({
 			<ins
 				className="adsbygoogle"
 				style={{ display: "block" }}
-				data-ad-slot="7939280679q"
+				data-ad-client={client}
+				data-ad-slot={slot}
 				data-ad-format={format}
 				data-full-width-responsive={responsive.toString()}
 			/>

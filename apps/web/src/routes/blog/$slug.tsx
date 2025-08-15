@@ -162,7 +162,13 @@ function BlogPost() {
 								h3Counter.current += 1;
 								return (
 									<Fragment>
-										{shouldShowAd && <Adsense className="my-6" />}
+										{shouldShowAd && (
+											<Adsense
+												client={"ca-pub-8261685347087628"}
+												slot={"7939280679"}
+												className="my-6"
+											/>
+										)}
 										<h3 {...rest} />
 									</Fragment>
 								);
