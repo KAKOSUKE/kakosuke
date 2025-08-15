@@ -7,7 +7,8 @@ declare namespace Cloudflare {
 		CLOUDFLARE_ACCOUNT_ID: string;
 		CLOUDFLARE_DATABASE_ID: string;
 		CLOUDFLARE_D1_TOKEN: string;
-		CORS_ORIGIN: string;
+		CORS_ORIGIN_1: string;
+		CORS_ORIGIN_2: string;
 		DB: D1Database;
 	}
 }
