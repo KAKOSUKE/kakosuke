@@ -41,7 +41,6 @@ const Adsense = ({
 			<ins
 				className="adsbygoogle"
 				style={{ display: "block" }}
-				data-ad-client="ca-pub-8261685347087628"
 				data-ad-slot="7939280679q"
 				data-ad-format={format}
 				data-full-width-responsive={responsive.toString()}
