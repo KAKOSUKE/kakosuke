@@ -162,13 +162,7 @@ function BlogPost() {
 								h3Counter.current += 1;
 								return (
 									<Fragment>
-										{shouldShowAd && (
-											<Adsense
-												client={import.meta.env.VITE_ADSENSE_CLIENT}
-												slot={import.meta.env.VITE_ADSENSE_SLOT}
-												className="my-6"
-											/>
-										)}
+										{shouldShowAd && <Adsense className="my-6" />}
 										<h3 {...rest} />
 									</Fragment>
 								);
