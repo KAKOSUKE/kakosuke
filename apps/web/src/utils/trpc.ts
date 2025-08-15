@@ -4,7 +4,7 @@ import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import { toast } from "sonner";
 import type { AppRouter } from "../../../server/src/routers";
 
-const API_URL = import.meta.env.VITE_API_URL || import.meta.env.VITE_SERVER_URL;
+const API_URL = import.meta.env.VITE_API_URL || "";
 
 export const queryClient = new QueryClient({
 	queryCache: new QueryCache({
