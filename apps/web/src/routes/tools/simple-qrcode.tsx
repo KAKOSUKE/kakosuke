@@ -3,6 +3,17 @@ import QRCodeGenerator from "@/components/qrcode";
 
 export const Route = createFileRoute("/tools/simple-qrcode")({
 	component: RouteComponent,
+	head: () => ({
+		meta: [
+			{
+				name: "description",
+				content: "シンプルなQRコードジェネレーター",
+			},
+			{
+				title: "シンプルなQRコードジェネレーター",
+			},
+		],
+	}),
 });
 
 function RouteComponent() {

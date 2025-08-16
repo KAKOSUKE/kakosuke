@@ -3,6 +3,17 @@ import ChartMaker from "@/components/mermaid";
 
 export const Route = createFileRoute("/tools/chart-maker")({
 	component: RouteComponent,
+	head: () => ({
+		meta: [
+			{
+				name: "description",
+				content: "Chart Maker - Create and visualize your charts easily.",
+			},
+			{
+				title: "Chart Maker",
+			},
+		],
+	}),
 });
 
 function RouteComponent() {

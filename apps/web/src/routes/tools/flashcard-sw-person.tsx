@@ -3,6 +3,17 @@ import { FlashcardSW } from "@/components/flashcard-sw";
 
 export const Route = createFileRoute("/tools/flashcard-sw-person")({
 	component: RouteComponent,
+	head: () => ({
+		meta: [
+			{
+				name: "description",
+				content: "社会福祉士 精神保健福祉士 共通科目 人物名 暗記カード",
+			},
+			{
+				title: "社会福祉士 精神保健福祉士 共通科目 人物名 暗記カード",
+			},
+		],
+	}),
 });
 
 function RouteComponent() {
