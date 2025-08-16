@@ -15,6 +15,12 @@ const TOOLS = [
 		description:
 			"Simple QR Code Generator は、簡単にQRコードを生成できるアプリケーションです。",
 	},
+	{
+		name: "社会福祉士 精神保健福祉士 共通科目 人物名 暗記カード",
+		slug: "flashcard-sw-person",
+		description:
+			"Flashcard SW は、スライド形式のフラッシュカードを作成できるアプリケーションです。",
+	},
 ];
 
 export const Route = createFileRoute("/tools/")({

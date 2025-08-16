@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ToolsIndexRouteImport } from './routes/tools/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as ToolsSimpleQrcodeRouteImport } from './routes/tools/simple-qrcode'
+import { Route as ToolsFlashcardSwPersonRouteImport } from './routes/tools/flashcard-sw-person'
 import { Route as ToolsChartMakerRouteImport } from './routes/tools/chart-maker'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as BlogTagIndexRouteImport } from './routes/blog/tag/index'
@@ -44,6 +45,11 @@ const ToolsSimpleQrcodeRoute = ToolsSimpleQrcodeRouteImport.update({
   path: '/tools/simple-qrcode',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsFlashcardSwPersonRoute = ToolsFlashcardSwPersonRouteImport.update({
+  id: '/tools/flashcard-sw-person',
+  path: '/tools/flashcard-sw-person',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ToolsChartMakerRoute = ToolsChartMakerRouteImport.update({
   id: '/tools/chart-maker',
   path: '/tools/chart-maker',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/tools/chart-maker': typeof ToolsChartMakerRoute
+  '/tools/flashcard-sw-person': typeof ToolsFlashcardSwPersonRoute
   '/tools/simple-qrcode': typeof ToolsSimpleQrcodeRoute
   '/blog': typeof BlogIndexRoute
   '/tools': typeof ToolsIndexRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/tools/chart-maker': typeof ToolsChartMakerRoute
+  '/tools/flashcard-sw-person': typeof ToolsFlashcardSwPersonRoute
   '/tools/simple-qrcode': typeof ToolsSimpleQrcodeRoute
   '/blog': typeof BlogIndexRoute
   '/tools': typeof ToolsIndexRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/tools/chart-maker': typeof ToolsChartMakerRoute
+  '/tools/flashcard-sw-person': typeof ToolsFlashcardSwPersonRoute
   '/tools/simple-qrcode': typeof ToolsSimpleQrcodeRoute
   '/blog/': typeof BlogIndexRoute
   '/tools/': typeof ToolsIndexRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog/$slug'
     | '/tools/chart-maker'
+    | '/tools/flashcard-sw-person'
     | '/tools/simple-qrcode'
     | '/blog'
     | '/tools'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog/$slug'
     | '/tools/chart-maker'
+    | '/tools/flashcard-sw-person'
     | '/tools/simple-qrcode'
     | '/blog'
     | '/tools'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/blog/$slug'
     | '/tools/chart-maker'
+    | '/tools/flashcard-sw-person'
     | '/tools/simple-qrcode'
     | '/blog/'
     | '/tools/'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BlogSlugRoute: typeof BlogSlugRoute
   ToolsChartMakerRoute: typeof ToolsChartMakerRoute
+  ToolsFlashcardSwPersonRoute: typeof ToolsFlashcardSwPersonRoute
   ToolsSimpleQrcodeRoute: typeof ToolsSimpleQrcodeRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ToolsIndexRoute: typeof ToolsIndexRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsSimpleQrcodeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/flashcard-sw-person': {
+      id: '/tools/flashcard-sw-person'
+      path: '/tools/flashcard-sw-person'
+      fullPath: '/tools/flashcard-sw-person'
+      preLoaderRoute: typeof ToolsFlashcardSwPersonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tools/chart-maker': {
       id: '/tools/chart-maker'
       path: '/tools/chart-maker'
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BlogSlugRoute: BlogSlugRoute,
   ToolsChartMakerRoute: ToolsChartMakerRoute,
+  ToolsFlashcardSwPersonRoute: ToolsFlashcardSwPersonRoute,
   ToolsSimpleQrcodeRoute: ToolsSimpleQrcodeRoute,
   BlogIndexRoute: BlogIndexRoute,
   ToolsIndexRoute: ToolsIndexRoute,
